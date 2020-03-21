@@ -49,8 +49,8 @@ import androidx.recyclerview.widget.RecyclerView;
  *     {@link #bindLongClickListener(View...)} 方法绑定某个或多个 View 的 “长按点击” 事件监听器。</li>
  * </ol>
  * <p>
- * 当不再需要 {@link ItemClickHelper} 对象时，应该调用 {@link #detach()} 方法进行分离。
- *
+ * 当不再需要 {@link ItemClickHelper} 对象时，应该调用 {@link #detach()} 方法进行分离。建议在
+ * RecyclerView.Adapter 的 onDetachedFromRecyclerView 方法中调用该方法。
  * <p>
  * <b>例：</b>
  * <code>
