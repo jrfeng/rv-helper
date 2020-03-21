@@ -1,0 +1,3 @@
+rootProject.name='rv-helper'
+include ':app'
+include ':helper'
