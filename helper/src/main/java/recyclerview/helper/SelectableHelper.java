@@ -41,7 +41,7 @@ import java.util.List;
  *     <li>调用 {@link #attachToRecyclerView(RecyclerView)} 方法将当前 {@link SelectableHelper} 对象
  *     附加到一个 RecyclerView 对象上；
  *     <li>在 RecyclerView.Adapter 的 onBindViewHolder 方法中调用当前 SelectableHelper 对象的
- *     {@link #onBindViewHolder(RecyclerView.ViewHolder, int)} 方法；</li>
+ *     {@link #updateSelectState(RecyclerView.ViewHolder, int)} 方法；</li>
  * </ul>
  * <p>
  * 当不再需要一个 {@link SelectableHelper} 对象时，应该调用它的 {@link #detach()} 方法分离它。建议在
@@ -77,7 +77,7 @@ public class SelectableHelper {
     /**
      * 需要在 RecyclerView.onBindViewHolder 方法中调用该方法。
      */
-    public <Holder extends RecyclerView.ViewHolder & Selectable> void onBindViewHolder(@NonNull Holder holder, int position) {
+    public <Holder extends RecyclerView.ViewHolder & Selectable> void updateSelectState(@NonNull Holder holder, int position) {
         holder.onUnselected();
         if (mSelectedPositions.contains(position)) {
             holder.onSelected();

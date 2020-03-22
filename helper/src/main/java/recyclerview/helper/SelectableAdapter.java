@@ -30,6 +30,8 @@ import java.util.List;
 
 /**
  * 继承该类即可让你的 RecyclerView.Adapter 具有单选和多选功能。
+ * <p>
+ * 该类还支持列表项的 “点击” 与 “长按点击” 功能。
  *
  * @param <Holder> 该参数必须继承 RecyclerView.ViewHolder 类并实现 {@link SelectableHelper.Selectable}
  *                 接口。
@@ -37,9 +39,11 @@ import java.util.List;
 public abstract class SelectableAdapter<Holder extends RecyclerView.ViewHolder & SelectableHelper.Selectable>
         extends RecyclerView.Adapter<Holder> {
     private SelectableHelper mSelectableHelper;
+    private ItemClickHelper mItemClickHelper;
 
     public SelectableAdapter() {
         mSelectableHelper = new SelectableHelper(this);
+        mItemClickHelper = new ItemClickHelper();
     }
 
     @Override
@@ -47,6 +51,7 @@ public abstract class SelectableAdapter<Holder extends RecyclerView.ViewHolder &
         super.onAttachedToRecyclerView(recyclerView);
 
         mSelectableHelper.attachToRecyclerView(recyclerView);
+        mItemClickHelper.attachToRecyclerView(recyclerView);
     }
 
     @Override
@@ -54,11 +59,14 @@ public abstract class SelectableAdapter<Holder extends RecyclerView.ViewHolder &
         super.onDetachedFromRecyclerView(recyclerView);
 
         mSelectableHelper.detach();
+        mItemClickHelper.detach();
     }
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        mSelectableHelper.onBindViewHolder(holder, position);
+        mSelectableHelper.updateSelectState(holder, position);
+        mItemClickHelper.bindClickListener(holder.itemView);
+        mItemClickHelper.bindLongClickListener(holder.itemView);
     }
 
     /**
@@ -96,6 +104,26 @@ public abstract class SelectableAdapter<Holder extends RecyclerView.ViewHolder &
      */
     public void setSelect(int position, boolean select) throws IllegalArgumentException {
         mSelectableHelper.setSelect(position, select);
+    }
+
+    /**
+     * 设置 {@link ItemClickHelper.OnItemClickListener} 事件监听器，该监听器会在某个列表项被 “点击” 时调用。
+     *
+     * @param listener 要设置的 {@link ItemClickHelper.OnItemClickListener} 事件监听器，可为 null。为
+     *                 null 时相当于清除上次设置的事件监听器。
+     */
+    public void setOnItemClickListener(ItemClickHelper.OnItemClickListener listener) {
+        mItemClickHelper.setOnItemClickListener(listener);
+    }
+
+    /**
+     * 设置 {@link ItemClickHelper.OnItemLongClickListener} 事件监听器，该监听器会在某个列表项被 “长按点击” 时调用。
+     *
+     * @param listener 要设置的 {@link ItemClickHelper.OnItemLongClickListener} 事件监听器，可为 null。
+     *                 为 null 时相当于清除上次设置的事件监听器。
+     */
+    public void setOnItemLongClickListener(ItemClickHelper.OnItemLongClickListener listener) {
+        mItemClickHelper.setOnItemLongClickListener(listener);
     }
 
     /**
