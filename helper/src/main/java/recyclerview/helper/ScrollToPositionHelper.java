@@ -83,6 +83,11 @@ public class ScrollToPositionHelper {
     private View mTargetView;
     private Drawable mTargetViewBackground;
 
+    // 由于调用 scrollToPosition 方法时只会触发 RecyclerView.OnScrollListener 的 onScrolled 方法，而
+    // 不会触发 onScrollStateChanged 方法，由于任何滚动事件都会触发 onScrolled 方法，因此需要在
+    // onScrolled 方法中使用一个标志位来判断是否执行了 scrollToPosition 方法。
+    private boolean mExecutedScrollToPosition;
+
     /**
      * 创建一个 ScrollToPositionHelper 对象。
      *
@@ -132,6 +137,14 @@ public class ScrollToPositionHelper {
 
                 startBackgroundAnim();
             }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if (mExecutedScrollToPosition) {
+                    mExecutedScrollToPosition = false;
+                    startBackgroundAnim();
+                }
+            }
         });
     }
 
@@ -160,18 +173,19 @@ public class ScrollToPositionHelper {
     }
 
     public void scrollToPosition(int position) {
-        if (mAnimator.isRunning()) {
-            mAnimator.cancel();
+        mPosition = position;
+        mExecutedScrollToPosition = true;
+
+        if (isViewHolderVisible()) {
+            mExecutedScrollToPosition = false;
+            startBackgroundAnim();
         }
 
-        mPosition = position;
         mRecyclerView.scrollToPosition(position);
     }
 
     public void smoothScrollToPosition(int position) {
-        if (mAnimator.isRunning()) {
-            mAnimator.cancel();
-        }
+        mExecutedScrollToPosition = false;
 
         mPosition = position;
         if (isViewHolderVisible()) {
@@ -228,6 +242,10 @@ public class ScrollToPositionHelper {
     private void startBackgroundAnim() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
             return;
+        }
+
+        if (mAnimator.isRunning()) {
+            mAnimator.cancel();
         }
 
         RecyclerView.ViewHolder holder = mRecyclerView.findViewHolderForAdapterPosition(mPosition);
