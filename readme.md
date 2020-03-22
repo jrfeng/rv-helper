@@ -1,14 +1,16 @@
 **RecyclerView 帮助类：**
 
-* [**ItemClickHelper**](./helper/src/main/java/recyclerview/helper/ItemClickHelper.java)：用于帮助处理 RecyclerView 中列表项的 **“点击/长按点击”** 事件。
-* [**SelectableHelper**](./helper/src/main/java/recyclerview/helper/SelectableHelper.java)：用于帮助实现 RecyclerView 中列表项的 **单选与多选** 功能。
-* [**ScrollToPositionHelper**](./helper/src/main/java/recyclerview/helper/ScrollToPositionHelper.java)：滚动到 RecyclerView 的某一 Item 位置时对该 Item 做 **背景闪动动画**。
+* [**`ItemClickHelper`**](./helper/src/main/java/recyclerview/helper/ItemClickHelper.java)：用于帮助处理 RecyclerView 中列表项的 **“点击/长按点击”** 事件。
+* [**`SelectableHelper`**](./helper/src/main/java/recyclerview/helper/SelectableHelper.java)：用于帮助实现 RecyclerView 中列表项的 **单选与多选** 功能。
+* [**`ScrollToPositionHelper`**](./helper/src/main/java/recyclerview/helper/ScrollToPositionHelper.java)：滚动到 RecyclerView 的某一 Item 位置时对该 Item 做 **背景闪动动画**。
+
+具体的使用方法，请查看 [`Wiki`](https://github.com/jrfeng/rv-helper/wiki)。
 
 ### 使用步骤
 
-**第 1 步**：将 JitPack 存储库添加到 build 文件中
+**第 1 步**：将 `JitPack` 存储库添加到 `build` 文件中
 
-将以下代码添加到项目根目录下的 build.gradle 文件中:
+将以下代码添加到项目根目录下的 `build.gradle` 文件中:
 
 ```gradle
 allprojects {

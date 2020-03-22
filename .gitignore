@@ -13,6 +13,8 @@
 .externalNativeBuild
 .cxx
 
+readme.html
+
 # Built application files
 *.apk
 *.aar
