@@ -93,7 +93,6 @@ public class SelectableHelper {
         NonNullHelper.requireNonNull(recyclerView);
 
         mRecyclerView = recyclerView;
-        mRecyclerView.setItemViewCacheSize(0);
         registerAdapterDataObserver();
     }
 
@@ -296,6 +295,8 @@ public class SelectableHelper {
         if (holder != null) {
             Selectable selectable = (Selectable) holder;
             selectable.onUnselected();
+        } else {
+            mAdapter.notifyItemChanged(position);
         }
     }
 
