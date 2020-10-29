@@ -93,6 +93,7 @@ public class SelectableHelper {
         NonNullHelper.requireNonNull(recyclerView);
 
         mRecyclerView = recyclerView;
+        mRecyclerView.setItemViewCacheSize(0);
         registerAdapterDataObserver();
     }
 
