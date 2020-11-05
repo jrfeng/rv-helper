@@ -1,4 +1,4 @@
-package com.test;
+package recyclerview.helper.debug;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,16 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.test.helper.ItemClickHelperActivity;
-import com.test.helper.R;
-import com.test.helper.ScrollToPositionHelperActivity;
-import com.test.helper.SelectableHelperActivity;
+import recyclerview.helper.ItemClickHelper;
+import recyclerview.helper.ItemClickableAdapter;
+import recyclerview.helper.debug.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import recyclerview.helper.ItemClickHelper;
-import recyclerview.helper.ItemClickableAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,14 +60,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public TestListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             return new ViewHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(android.R.layout.simple_list_item_1, parent, false));
+                    .inflate(R.layout.item_main_activity, parent, false));
         }
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             super.onBindViewHolder(holder, position);
 
-            holder.text1.setText(mItemList.get(position).title);
+            holder.text.setText(mItemList.get(position).title);
         }
 
         @Override
@@ -80,11 +76,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         private static class ViewHolder extends RecyclerView.ViewHolder {
-            TextView text1;
+            TextView text;
 
             ViewHolder(@NonNull View itemView) {
                 super(itemView);
-                text1 = itemView.findViewById(android.R.id.text1);
+                text = itemView.findViewById(R.id.tvText);
             }
         }
 

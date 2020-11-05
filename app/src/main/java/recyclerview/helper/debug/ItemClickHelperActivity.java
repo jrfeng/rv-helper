@@ -1,23 +1,21 @@
-package com.test.helper;
+package recyclerview.helper.debug;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import recyclerview.helper.ItemClickHelper;
 
 public class ItemClickHelperActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,42 +23,44 @@ public class ItemClickHelperActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new ItemClickHelperAdapter(this, 50));
+        recyclerView.setAdapter(new ItemClickHelperAdapter(50, (TextView) findViewById(R.id.tvMessage)));
     }
 
     public static class ItemClickHelperAdapter extends RecyclerView.Adapter<ItemClickHelperAdapter.ViewHolder> {
-        private Context mContext;
         private int mSize;
         private ItemClickHelper mItemClickHelper;
+        private TextView tvMessage;
 
-        ItemClickHelperAdapter(Context context, int size) {
-            mContext = context;
+        ItemClickHelperAdapter(int size, TextView messageView) {
             mSize = size;
             mItemClickHelper = new ItemClickHelper();
+            tvMessage = messageView;
 
             mItemClickHelper.setOnItemClickListener(new ItemClickHelper.OnItemClickListener() {
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void onItemClicked(int position, int viewId, View view, RecyclerView.ViewHolder holder) {
                     switch (viewId) {
                         case R.id.item:
-                            Toast.makeText(mContext, "ItemClicked, position: " + position, Toast.LENGTH_SHORT).show();
+                            tvMessage.setText("Item clicked, position: " + position);
                             break;
                         case R.id.button:
-                            Toast.makeText(mContext, "ButtonClicked, position: " + position, Toast.LENGTH_SHORT).show();
+                            tvMessage.setText("Button clicked, position: " + position);
                             break;
                     }
                 }
             });
 
             mItemClickHelper.setOnItemLongClickListener(new ItemClickHelper.OnItemLongClickListener() {
+                @SuppressLint("SetTextI18n")
                 @Override
                 public boolean onItemLongClicked(int position, int viewId, View view, RecyclerView.ViewHolder holder) {
                     switch (viewId) {
                         case R.id.item:
-                            Toast.makeText(mContext, "ItemLongClicked, position: " + position, Toast.LENGTH_SHORT).show();
+                            tvMessage.setText("Item long clicked, position: " + position);
                             return true;
                         case R.id.button:
-                            Toast.makeText(mContext, "ButtonLongClicked, position: " + position, Toast.LENGTH_SHORT).show();
+                            tvMessage.setText("Button long clicked, position: " + position);
                             return true;
                     }
 

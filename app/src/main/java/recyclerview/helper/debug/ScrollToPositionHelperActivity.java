@@ -1,4 +1,4 @@
-package com.test.helper;
+package recyclerview.helper.debug;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

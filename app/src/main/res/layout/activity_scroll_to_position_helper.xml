@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        tools:context=".ScrollToPositionHelperActivity" />
+        tools:context="recyclerview.helper.debug.ScrollToPositionHelperActivity" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,8 @@
             android:layout_height="wrap_content"
             android:onClick="onClick"
             android:text="ScrollTo"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            tools:ignore="ButtonStyle,HardcodedText" />
 
         <Button
             android:id="@+id/btnSmoothScrollTo"
@@ -31,7 +32,8 @@
             android:layout_height="wrap_content"
             android:onClick="onClick"
             android:text="SmoothScrollTo"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            tools:ignore="ButtonStyle,HardcodedText" />
 
     </LinearLayout>
 
