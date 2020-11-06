@@ -1,9 +1,9 @@
 **RecyclerView 帮助类：**
 
-* **ItemClickHelper**：用于帮助处理 `RecyclerView` 中列表项的 **“点击/长按点击”** 事件。
-* **SelectableHelper**：用于帮助实现 `RecyclerView` 中列表项的 **单选与多选** 功能。
-* **ScrollToPositionHelper**：滚动到 `RecyclerView` 的某一 `Item` 位置，并对该 `Item` 做 **背景闪动动画**。
-* **PositionHelper**：用于帮助维护 `RecyclerView` 中列表项的序号。
+* **`ItemClickHelper`**：用于帮助处理 `RecyclerView` 中列表项的 **“点击/长按点击”** 事件。
+* **`SelectableHelper`**：用于帮助实现 `RecyclerView` 中列表项的 **单选与多选** 功能。
+* **`ScrollToPositionHelper`**：滚动到 `RecyclerView` 的某一 `Item` 位置，并对该 `Item` 做 **背景闪动动画**。
+* **`PositionHelper`**：用于帮助维护 `RecyclerView` 中列表项的序号。
 
 具体的使用方法，请查看 [`Wiki`](https://github.com/jrfeng/rv-helper/wiki)。
 
@@ -26,7 +26,7 @@ allprojects {
 
 ```gradle
 dependencies {
-    implementation 'com.github.jrfeng:rv-helper:1.0'
+    implementation 'com.github.jrfeng:rv-helper:1.1'
 }
 ```
 
