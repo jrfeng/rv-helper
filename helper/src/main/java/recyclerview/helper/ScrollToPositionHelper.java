@@ -115,7 +115,7 @@ public class ScrollToPositionHelper {
      * @param duration       背景闪动动画的持续时间，单位：毫秒。小于 0 时默认为 0。
      */
     public ScrollToPositionHelper(@NonNull RecyclerView recyclerView, @ColorInt int highlightColor, int duration) {
-        NonNullHelper.requireNonNull(recyclerView);
+        NonNullUtil.requireNonNull(recyclerView);
         if (duration < 0) {
             duration = 0;
         }
@@ -168,7 +168,7 @@ public class ScrollToPositionHelper {
      * @param interpolator 背景闪动动画的插值器，不能为 null。
      */
     public void setAnimInterpolator(@NonNull TimeInterpolator interpolator) {
-        NonNullHelper.requireNonNull(interpolator);
+        NonNullUtil.requireNonNull(interpolator);
         mAnimator.setInterpolator(interpolator);
     }
 

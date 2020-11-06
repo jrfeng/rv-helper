@@ -38,8 +38,8 @@ public abstract class AbstractDiffCallback<T> extends DiffUtil.Callback {
     private List<T> mNewList;
 
     public AbstractDiffCallback(@NonNull List<T> oldList, @NonNull List<T> newList) {
-        NonNullHelper.requireNonNull(oldList);
-        NonNullHelper.requireNonNull(newList);
+        NonNullUtil.requireNonNull(oldList);
+        NonNullUtil.requireNonNull(newList);
 
         mOldList = oldList;
         mNewList = newList;

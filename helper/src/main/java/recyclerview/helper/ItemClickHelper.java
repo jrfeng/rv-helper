@@ -121,7 +121,7 @@ public class ItemClickHelper {
      * @param recyclerView 要附加到的 RecyclerView 对象，不能为 null。
      */
     public void attachToRecyclerView(@NonNull RecyclerView recyclerView) {
-        NonNullHelper.requireNonNull(recyclerView);
+        NonNullUtil.requireNonNull(recyclerView);
 
         mRecyclerView = recyclerView;
     }

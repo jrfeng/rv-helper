@@ -63,7 +63,7 @@ public class SelectableHelper {
     private RecyclerView.AdapterDataObserver mAdapterDataObserver;
 
     public SelectableHelper(@NonNull RecyclerView.Adapter adapter) {
-        NonNullHelper.requireNonNull(adapter);
+        NonNullUtil.requireNonNull(adapter);
 
         mAdapter = adapter;
         mRecyclerView = null;
@@ -90,7 +90,7 @@ public class SelectableHelper {
      * @param recyclerView 要附加到的 RecyclerView 对象，不能为 null。
      */
     public void attachToRecyclerView(@NonNull RecyclerView recyclerView) {
-        NonNullHelper.requireNonNull(recyclerView);
+        NonNullUtil.requireNonNull(recyclerView);
 
         mRecyclerView = recyclerView;
         registerAdapterDataObserver();
