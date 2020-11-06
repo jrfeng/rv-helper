@@ -78,9 +78,10 @@ public class SelectableHelper {
      * 需要在 RecyclerView.onBindViewHolder 方法中调用该方法。
      */
     public <Holder extends RecyclerView.ViewHolder & Selectable> void updateSelectState(@NonNull Holder holder, int position) {
-        holder.onUnselected();
         if (mSelectedPositions.contains(position)) {
             holder.onSelected();
+        } else {
+            holder.onUnselected();
         }
     }
 
