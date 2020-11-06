@@ -68,7 +68,7 @@ public class PositionHelperActivity extends AppCompatActivity {
     }
 
     private void removeItems() {
-        if (mItems.size() <= 5) {
+        if (mItems.size() <= 10) {
             Toast.makeText(this, "Ignore, too few items", Toast.LENGTH_SHORT).show();
             return;
         }
