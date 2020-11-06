@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import recyclerview.helper.ItemClickHelper;
 import recyclerview.helper.ItemClickableAdapter;
-import recyclerview.helper.debug.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         itemList.add(new TestListAdapter.Item("ItemClickHelper", ItemClickHelperActivity.class));
         itemList.add(new TestListAdapter.Item("SelectableHelper", SelectableHelperActivity.class));
         itemList.add(new TestListAdapter.Item("ScrollToPositionHelper", ScrollToPositionHelperActivity.class));
+        itemList.add(new TestListAdapter.Item("PositionHelper", PositionHelperActivity.class));
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

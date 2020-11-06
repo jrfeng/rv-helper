@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".ScrollToPositionHelperActivity"/>
+        <activity android:name=".PositionHelperActivity"/>
+        <activity android:name=".ScrollToPositionHelperActivity" />
         <activity android:name=".SelectableHelperActivity" />
         <activity android:name=".ItemClickHelperActivity" />
         <activity android:name=".MainActivity">
