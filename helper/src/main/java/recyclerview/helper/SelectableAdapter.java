@@ -79,6 +79,15 @@ public abstract class SelectableAdapter<Holder extends RecyclerView.ViewHolder &
     }
 
     /**
+     * 设置一个用于监听 “选中数量” 改变的监听器。
+     *
+     * @param listener 监听器，可为 null。为 null 时将清除上次设置的监听器。
+     */
+    public void setOnSelectCountChangeListener(SelectableHelper.OnSelectCountChangeListener listener) {
+        mSelectableHelper.setOnSelectCountChangeListener(listener);
+    }
+
+    /**
      * 查询某个列表项是否已被选中。
      *
      * @param position 要查询的列表项的位置。

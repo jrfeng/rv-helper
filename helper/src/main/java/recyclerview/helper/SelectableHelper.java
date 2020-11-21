@@ -61,6 +61,7 @@ public class SelectableHelper {
     private List<Integer> mSelectedPositions;
 
     private RecyclerView.AdapterDataObserver mAdapterDataObserver;
+    private OnSelectCountChangeListener mOnSelectCountChangeListener;
 
     public SelectableHelper(@NonNull RecyclerView.Adapter adapter) {
         NonNullUtil.requireNonNull(adapter);
@@ -135,6 +136,16 @@ public class SelectableHelper {
         for (Integer selectedPosition : mSelectedPositions.subList(0, mSelectedPositions.size())) {
             deselect(selectedPosition);
         }
+        notifySelectCountChanged();
+    }
+
+    /**
+     * 设置一个用于监听 “选中数量” 改变的监听器。
+     *
+     * @param listener 监听器，可为 null。为 null 时将清除上次设置的监听器。
+     */
+    public void setOnSelectCountChangeListener(@Nullable OnSelectCountChangeListener listener) {
+        mOnSelectCountChangeListener = listener;
     }
 
     /**
@@ -206,6 +217,8 @@ public class SelectableHelper {
                         mSelectedPositions.add(selectedItem - itemCount);
                     }
                 }
+
+                notifySelectCountChanged();
             }
 
             @Override
@@ -268,6 +281,7 @@ public class SelectableHelper {
         }
 
         mSelectedPositions.add(position);
+        notifySelectCountChanged();
 
         if (mRecyclerView == null) {
             return;
@@ -287,6 +301,7 @@ public class SelectableHelper {
 
         // 要手动装箱, 否则调用的是 remove(int):E 方法, 而不是 remove(Object):boolean 方法
         mSelectedPositions.remove(Integer.valueOf(position));
+        notifySelectCountChanged();
 
         if (mRecyclerView == null) {
             return;
@@ -298,6 +313,12 @@ public class SelectableHelper {
             selectable.onUnselected();
         } else {
             mAdapter.notifyItemChanged(position);
+        }
+    }
+
+    private void notifySelectCountChanged() {
+        if (mOnSelectCountChangeListener != null) {
+            mOnSelectCountChangeListener.onSelectCountChanged(mSelectedPositions.size());
         }
     }
 
@@ -319,5 +340,17 @@ public class SelectableHelper {
         void onSelected();
 
         void onUnselected();
+    }
+
+    /**
+     * 监听选中数量改变的。
+     */
+    public interface OnSelectCountChangeListener {
+        /**
+         * 当选中的列表项的数量发生改变时会回调该方法。
+         *
+         * @param selectedCount 当前的选中数量
+         */
+        void onSelectCountChanged(int selectedCount);
     }
 }
