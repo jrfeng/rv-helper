@@ -13,6 +13,14 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <TextView
+        android:id="@+id/tvSelectCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="SelectCount: 0" />
+
     <RadioGroup
         android:id="@+id/rgMode"
         android:layout_width="wrap_content"

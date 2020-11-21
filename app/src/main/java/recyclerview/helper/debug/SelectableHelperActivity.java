@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -43,6 +44,15 @@ public class SelectableHelperActivity extends AppCompatActivity {
 
         mAdapter = new TestSelectableAdapter(mItems);
         recyclerView.setAdapter(mAdapter);
+
+        final TextView tvSelectCount = findViewById(R.id.tvSelectCount);
+        mAdapter.setOnSelectCountChangeListener(new SelectableHelper.OnSelectCountChangeListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onSelectCountChanged(int selectedCount) {
+                tvSelectCount.setText("SelectCount: " + selectedCount);
+            }
+        });
 
         RadioGroup rgMode = findViewById(R.id.rgMode);
         rgMode.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
