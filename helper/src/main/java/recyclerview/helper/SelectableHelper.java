@@ -182,6 +182,13 @@ public class SelectableHelper {
     }
 
     /**
+     * 切换 position 处的选择状态。
+     */
+    public void toggle(int position) {
+        setSelect(position, !isSelected(position));
+    }
+
+    /**
      * 查询某个列表项是否已被选中。
      *
      * @param position 要查询的列表项的位置。
