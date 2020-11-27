@@ -64,13 +64,22 @@ public class SelectableHelper {
     private OnSelectCountChangeListener mOnSelectCountChangeListener;
 
     public SelectableHelper(@NonNull RecyclerView.Adapter adapter) {
+        this(adapter, null);
+    }
+
+    public SelectableHelper(@NonNull RecyclerView.Adapter adapter, @Nullable List<Integer> selectedPositions) {
         NonNullUtil.requireNonNull(adapter);
 
         mAdapter = adapter;
         mRecyclerView = null;
 
-        mSelectMode = SelectMode.SINGLE;
-        mSelectedPositions = new ArrayList<>();
+        if (selectedPositions == null) {
+            mSelectMode = SelectMode.SINGLE;
+            mSelectedPositions = new ArrayList<>();
+        } else {
+            mSelectMode = SelectMode.MULTIPLE;
+            mSelectedPositions = new ArrayList<>(selectedPositions);
+        }
 
         initAdapterDataObserver();
     }
@@ -180,6 +189,15 @@ public class SelectableHelper {
      */
     public boolean isSelected(int position) {
         return mSelectedPositions.contains(position);
+    }
+
+    /**
+     * 获取被选中项的数量。
+     *
+     * @return 被选中项的数量。
+     */
+    public int getSelectedCount() {
+        return mSelectedPositions.size();
     }
 
     /**
