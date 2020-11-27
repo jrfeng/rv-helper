@@ -142,12 +142,9 @@ public class SelectableHelper {
     /**
      * 清除所所列表项的选中状态。
      */
-    @SuppressWarnings("WhileLoopReplaceableByForEach")
     public void clearSelected() {
-        Iterator<Integer> iterator = mSelectedPositions.iterator();
-        while (iterator.hasNext()) {
-            // 不能使用 for 循环，因为该方法会会删除列表中的元素
-            deselect(iterator.next());
+        for (int position : new ArrayList<>(mSelectedPositions)) {
+            deselect(position);
         }
         notifySelectCountChanged();
     }
