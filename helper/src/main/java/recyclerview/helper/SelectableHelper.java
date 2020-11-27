@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -141,9 +142,12 @@ public class SelectableHelper {
     /**
      * 清除所所列表项的选中状态。
      */
+    @SuppressWarnings("WhileLoopReplaceableByForEach")
     public void clearSelected() {
-        for (Integer selectedPosition : mSelectedPositions.subList(0, mSelectedPositions.size())) {
-            deselect(selectedPosition);
+        Iterator<Integer> iterator = mSelectedPositions.iterator();
+        while (iterator.hasNext()) {
+            // 不能使用 for 循环，因为该方法会会删除列表中的元素
+            deselect(iterator.next());
         }
         notifySelectCountChanged();
     }
